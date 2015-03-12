@@ -1,6 +1,7 @@
 Short Stack: Ruby
 =========
 [![Build Status](https://travis-ci.org/poetic/short-stack-ruby.svg)](https://travis-ci.org/poetic/short-stack-ruby)
+
 Installs ruby and rbenv.
 
 Requirements

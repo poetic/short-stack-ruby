@@ -1,10 +1,12 @@
 ---
-- name: copy .gemrc into ~
-  copy:
-    src: gemrc
+- name: ensure gemrc configuration is present
+  lineinfile:
+  args:
     dest: ~/.gemrc
+    line: 'gem: --no-rdoc --no-ri'
+    create: yes
 
-- name: install/update ruby tooling
+- name: ensure ruby tooling is installed/updated
   homebrew: name={{ item }} state=latest
   with_items:
     - rbenv
@@ -17,5 +19,6 @@
 - name: ensure ~/.rbenv directory exists
   file: path=~/.rbenv state=directory
 
-- name: add ruby configuration to zsh
-  copy: src=ruby.zsh dest={{ zshrc_d }}
+- name: ensure ruby zsh configuration exists
+  copy: src=ruby.zsh dest={{ stack_d }}
+  when: "'zsh' in role_names"
