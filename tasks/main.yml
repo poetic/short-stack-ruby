@@ -21,4 +21,3 @@
 
 - name: ensure ruby zsh configuration exists
   copy: src=ruby.zsh dest={{ stack_d }}
-  when: "'zsh' in role_names"
