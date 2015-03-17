@@ -19,5 +19,9 @@
 - name: ensure ~/.rbenv directory exists
   file: path=~/.rbenv state=directory
 
-- name: ensure ruby zsh configuration exists
-  copy: src=ruby.zsh dest={{ stack_d }}
+- name: add configuration to stack.d
+  copy: src={{ item }} dest={{ stack_d }}
+  with_items:
+    - ruby.bundle
+    - ruby.zsh
+  notify: vim bundle install
